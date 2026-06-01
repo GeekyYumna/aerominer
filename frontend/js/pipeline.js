@@ -86,7 +86,7 @@ async function runPipeline() {
   addToFeed('INFO', 'System', 'Connecting to backend...');
 
   try {
-    const res = await fetch('http://localhost:3001/api/pipeline/run', {
+    const res = await fetch('https://aerominer-production.up.railway.app/api/pipeline/run', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -117,7 +117,7 @@ async function runPipeline() {
 async function pollPipelineStatus(runId) {
   const interval = setInterval(async () => {
     try {
-      const res  = await fetch(`http://localhost:3001/api/pipeline/status/${runId}`);
+      const res  = await fetch(`https://aerominer-production.up.railway.app/api/pipeline/status/${runId}`);
       const data = await res.json();
 
       renderPollLogs(data.logs || []);

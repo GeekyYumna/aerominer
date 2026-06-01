@@ -14,7 +14,7 @@ window.addEventListener('load', () => {
 // ============================================================
 async function loadLogsFromBackend() {
   try {
-    const res  = await fetch('http://localhost:3001/api/logs?limit=500');
+    const res  = await fetch('https://aerominer-production.up.railway.app/api/logs?limit=500');
     const data = await res.json();
     allLogs    = data.logs || [];
     renderLogs(allLogs);
@@ -63,7 +63,7 @@ document.getElementById('clear-logs-btn').addEventListener('click', async () => 
   if (!confirm('Clear all log entries? This cannot be undone.')) return;
 
   try {
-    await fetch('http://localhost:3001/api/logs', { method: 'DELETE' });
+    await fetch('https://aerominer-production.up.railway.app/api/logs', { method: 'DELETE' });
     allLogs = [];
     renderLogs([]);
     updateStats([]);

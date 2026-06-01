@@ -4,7 +4,7 @@
 // ============================================================
 'use strict';
 
-const BACKEND = 'http://localhost:3001';
+const BACKEND = 'https://aerominer-production.up.railway.app';
 
 // ============================================================
 // INIT

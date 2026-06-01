@@ -189,7 +189,7 @@ previewBtn.addEventListener('click', async () => {
       limit:     config.maxRepos || 30,
     });
 
-    const res = await fetch(`http://localhost:3001/api/repos?${params}`);
+    const res = await fetch(`https://aerominer-production.up.railway.app/api/repos?${params}`);
     if (!res.ok) throw new Error(`Server error: ${res.status}`);
 
     const data   = await res.json();
@@ -255,6 +255,6 @@ downloadBtn.addEventListener('click', () => {
     min_stars: minStars,
   });
 
-  window.location.href = `http://localhost:3001/api/export/${format}?${params}`;
+  window.location.href = `https://aerominer-production.up.railway.app/api/export/${format}?${params}`;
 });
 
