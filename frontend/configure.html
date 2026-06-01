@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AeroMiner — Configure</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <span class="nav-brand">✈ AeroMiner</span>
+    <ul class="nav-links">
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="configure.html" class="active">Configure</a></li>
+      <li><a href="pipeline.html">Pipeline</a></li>
+      <li><a href="export.html">Export</a></li>
+      <li><a href="logs.html">Logs</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <h1>Configure Search Parameters</h1>
+    <p class="page-desc">Define the keywords, filters, and limits for the extraction pipeline.</p>
+
+    <div class="card">
+      <form id="config-form" novalidate>
+
+        <div class="form-group">
+          <label for="keyword">Search Keyword</label>
+          <input type="text" id="keyword" placeholder="e.g. aviation, drone, flight-sim" />
+          <span class="error-msg" id="keyword-error"></span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="min-stars">Minimum Stars</label>
+            <input type="number" id="min-stars" placeholder="e.g. 50" min="0" />
+            <span class="error-msg" id="stars-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="language">Language <span style="color:#8b949e;font-weight:400;">(optional)</span></label>
+            <select id="language">
+              <option value="">-- Select --</option>
+              <option value="python">Python</option>
+              <option value="cpp">C++</option>
+              <option value="java">Java</option>
+              <option value="javascript">JavaScript</option>
+              <option value="c">C</option>
+            </select>
+            <span class="error-msg" id="lang-error"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="max-repos">Max Repositories to Fetch (max 30)</label>
+            <input type="number" id="max-repos" placeholder="e.g. 30" min="1" max="30" />
+          <span class="error-msg" id="repos-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="config-format">Config Input Format</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="config-format" value="cli" checked /> CLI Flags
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="config-format" value="yaml" /> YAML File
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="config-format" value="json" /> JSON File
+            </label>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="save-btn">Validate &amp; Save</button>
+          <button type="button" id="clear-btn" class="btn-secondary">Clear</button>
+        </div>
+
+      </form>
+
+     <div id="success-msg" class="success-banner" style="display:none;"></div>
+    </div>
+
+  </main>
+
+<footer class="site-footer">
+  <p>SE-302 — Software Construction &amp; Development</p>
+  <p>AeroMiner — Aviation Repository ETL System</p>
+</footer>
+
+  <script src="js/configure.js"></script>
+</body>
+</html>

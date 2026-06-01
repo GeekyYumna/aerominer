@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AeroMiner</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <span class="nav-brand">✈ AeroMiner</span>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Dashboard</a></li>
+      <li><a href="configure.html">Configure</a></li>
+      <li><a href="pipeline.html">Pipeline</a></li>
+      <li><a href="export.html">Export</a></li>
+      <li><a href="logs.html">Logs</a></li>
+    </ul>
+  </nav>
+
+
+<!-- Hero -->
+<div class="hero-video-wrap">
+  <div id="lottie-bg"></div>
+</div>
+
+
+
+<main class="container">
+
+  <!-- System flow -->
+  <div class="card" style="margin-top: 28px;">
+    <h2 class="card-title">System Flow</h2>
+    <div id="system-flow"></div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row" style="margin-top: 20px;">
+    <div class="stat-card">
+      <div class="stat-number" id="dash-repos">—</div>
+      <div class="stat-label">Max Repos Configured</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color:#3fb950" id="dash-logs">—</div>
+      <div class="stat-label">Log Entries</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color:#f85149" id="dash-errors">—</div>
+      <div class="stat-label">Errors Logged</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color:#58a6ff" id="dash-status">—</div>
+      <div class="stat-label">Pipeline Status</div>
+    </div>
+  </div>
+
+  <!-- Two column layout -->
+  <div class="dash-grid" style="margin-top: 24px;">
+
+    <!-- Active config -->
+    <div class="card">
+      <h2 class="card-title">Active Configuration</h2>
+      <div id="dash-config-empty" class="empty-state">
+        No configuration saved yet.<br/>
+        <a href="configure.html">Set up the pipeline →</a>
+      </div>
+      <div id="dash-config-data" style="display:none;">
+        <div class="summary-grid">
+          <span class="summary-label">Keyword</span>   <span id="d-keyword" class="summary-val">—</span>
+          <span class="summary-label">Min Stars</span> <span id="d-stars"   class="summary-val">—</span>
+          <span class="summary-label">Language</span>  <span id="d-lang"    class="summary-val">—</span>
+          <span class="summary-label">Max Repos</span> <span id="d-repos"   class="summary-val">—</span>
+          <span class="summary-label">Format</span>    <span id="d-format"  class="summary-val">—</span>
+        </div>
+        <a href="configure.html" class="edit-link">Edit configuration →</a>
+      </div>
+    </div>
+
+    <!-- ETL architecture -->
+    <div class="card">
+      <h2 class="card-title">ETL Architecture</h2>
+      <div class="etl-flow">
+        <div class="etl-step">
+          <div class="etl-icon" style="background:#1f3a5f; color:#58a6ff;">⬇</div>
+          <div>
+            <div class="etl-name">Extract</div>
+            <div class="etl-detail">GitHub REST API · Rate limiting · Pagination</div>
+          </div>
+        </div>
+        <div class="etl-arrow">↓</div>
+        <div class="etl-step">
+          <div class="etl-icon" style="background:#2a1f5f; color:#a78bfa;">⚙</div>
+          <div>
+            <div class="etl-name">Transform</div>
+            <div class="etl-detail">Strategy Pattern · Aviation sub-domain classifier</div>
+          </div>
+        </div>
+        <div class="etl-arrow">↓</div>
+        <div class="etl-step">
+          <div class="etl-icon" style="background:#1a3a2a; color:#3fb950;">💾</div>
+          <div>
+            <div class="etl-name">Load</div>
+            <div class="etl-detail">Repository Pattern · Export to CSV / JSON</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Quick actions -->
+  <div class="card" style="margin-top: 24px;">
+    <h2 class="card-title">Quick Actions</h2>
+    <div class="actions-grid">
+      <a href="configure.html" class="action-card">
+        <div class="action-icon">⚙</div>
+        <div class="action-title">Configure</div>
+        <div class="action-desc">Set keywords, filters, and execution limits</div>
+      </a>
+      <a href="pipeline.html" class="action-card">
+        <div class="action-icon">▶</div>
+        <div class="action-title">Run Pipeline</div>
+        <div class="action-desc">Execute the full ETL extraction process</div>
+      </a>
+      <a href="export.html" class="action-card">
+        <div class="action-icon">⬇</div>
+        <div class="action-title">Export Data</div>
+        <div class="action-desc">Download results as JSON or CSV</div>
+      </a>
+      <a href="logs.html" class="action-card">
+        <div class="action-icon">📋</div>
+        <div class="action-title">View Logs</div>
+        <div class="action-desc">Browse and filter execution history</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Recent logs -->
+  <div class="card" style="margin-top: 24px; margin-bottom: 40px;">
+    <h2 class="card-title">Recent Log Entries</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:160px">Timestamp</th>
+            <th style="width:80px">Level</th>
+            <th>Message</th>
+            <th style="width:120px">Stage</th>
+          </tr>
+        </thead>
+        <tbody id="recent-logs-body"></tbody>
+      </table>
+    </div>
+    <a href="logs.html" class="edit-link" style="margin-top:14px; display:inline-block;">
+      View all logs →
+    </a>
+  </div>
+
+</main>
+
+
+<footer class="site-footer">
+  <p>SE-302 — Software Construction &amp; Development</p>
+  <p>AeroMiner — Aviation Repository ETL System</p>
+</footer>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+<script>
+  lottie.loadAnimation({
+    container: document.getElementById('lottie-bg'),
+    renderer: 'svg',
+    loop: false,
+    autoplay: true,
+    path: 'assets/aerominer.json'
+  });
+</script>
+
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+
+
+

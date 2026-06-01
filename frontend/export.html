@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AeroMiner — Export</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <span class="nav-brand">✈ AeroMiner</span>
+    <ul class="nav-links">
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="configure.html">Configure</a></li>
+      <li><a href="pipeline.html">Pipeline</a></li>
+      <li><a href="export.html" class="active">Export</a></li>
+      <li><a href="logs.html">Logs</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <h1>Export Categorized Data</h1>
+    <p class="page-desc">Filter and download the extracted aviation repository dataset.</p>
+
+    <!-- Filters -->
+    <div class="card">
+      <h2 class="card-title">Filters</h2>
+      <div class="form-row">
+
+        <div class="form-group" id="category-filter-group" style="display:none;">
+       <label for="filter-category">Category</label>
+       <select id="filter-category">
+       <option value="all">All Categories</option>
+       </select>
+      </div>
+
+        <div class="form-group">
+          <label for="filter-stars">Minimum Stars</label>
+          <input type="number" id="filter-stars" placeholder="e.g. 10" min="0" />
+        </div>
+
+      </div>
+
+      <div class="form-group" style="margin-top: 4px;">
+        <label>Export Format</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input type="radio" name="export-format" value="json" checked /> JSON
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="export-format" value="csv" /> CSV
+          </label>
+        </div>
+      </div>
+
+      <div class="form-actions" style="margin-top: 8px;">
+        <button id="preview-btn">Preview Data</button>
+        <button id="download-btn" class="btn-secondary">⬇ Download</button>
+      </div>
+    </div>
+
+    <!-- Preview table -->
+    <div class="card" style="margin-top: 20px;">
+      <h2 class="card-title">Data Preview <span id="record-count" class="count-badge"></span></h2>
+      <div class="table-wrap">
+        <table id="preview-table">
+          <thead>
+            <tr>
+              <th>Repository</th>
+              <th>Category</th>
+              <th>Language</th>
+              <th>Stars</th>
+              <th>Last Updated</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <tr>
+              <td colspan="5" class="table-empty">Click "Preview Data" to load results.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+
+  <footer class="site-footer">
+  <p>SE-302 — Software Construction &amp; Development</p>
+  <p>AeroMiner — Aviation Repository ETL System</p>
+</footer>
+
+  <script src="js/export.js"></script>
+</body>
+</html>

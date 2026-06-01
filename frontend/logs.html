@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AeroMiner — Logs</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <span class="nav-brand">✈ AeroMiner</span>
+    <ul class="nav-links">
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="configure.html">Configure</a></li>
+      <li><a href="pipeline.html">Pipeline</a></li>
+      <li><a href="export.html">Export</a></li>
+      <li><a href="logs.html" class="active">Logs</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <h1>Extraction Logs</h1>
+    <p class="page-desc">View, filter, and search the full execution history of the pipeline.</p>
+
+    <!-- Filters -->
+    <div class="card">
+      <h2 class="card-title">Filters</h2>
+      <div class="form-row">
+
+        <div class="form-group">
+          <label for="filter-level">Log Level</label>
+          <select id="filter-level">
+            <option value="all">All Levels</option>
+            <option value="INFO">INFO</option>
+            <option value="WARN">WARN</option>
+            <option value="ERROR">ERROR</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="filter-search">Search Message</label>
+          <input type="text" id="filter-search" placeholder="e.g. rate limit, database..." />
+        </div>
+
+      </div>
+
+      <div class="form-actions" style="margin-top: 8px;">
+        <button id="filter-btn">Apply Filters</button>
+        <button id="clear-filter-btn" class="btn-secondary">Clear Filters</button>
+        <button id="clear-logs-btn" class="btn-secondary" style="margin-left: auto;">🗑 Clear All Logs</button>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="stats-row" id="stats-row" style="margin-top: 20px;">
+      <div class="stat-card">
+        <div class="stat-number" id="stat-total">0</div>
+        <div class="stat-label">Total Entries</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" style="color:#58a6ff" id="stat-info">0</div>
+        <div class="stat-label">INFO</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" style="color:#e3b341" id="stat-warn">0</div>
+        <div class="stat-label">WARN</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" style="color:#f85149" id="stat-error">0</div>
+        <div class="stat-label">ERROR</div>
+      </div>
+    </div>
+
+    <!-- Log table -->
+    <div class="card" style="margin-top: 20px;">
+      <h2 class="card-title">
+        Log Entries
+        <span id="log-count" class="count-badge"></span>
+      </h2>
+
+      <div class="table-wrap">
+        <table id="log-table">
+          <thead>
+            <tr>
+              <th style="width:160px">Timestamp</th>
+              <th style="width:80px">Level</th>
+              <th>Message</th>
+              <th style="width:120px">Stage</th>
+            </tr>
+          </thead>
+          <tbody id="log-body">
+            <tr>
+              <td colspan="4" class="table-empty">No logs found. Run the pipeline first.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+  <p>SE-302 — Software Construction &amp; Development</p>
+  <p>AeroMiner — Aviation Repository ETL System</p>
+</footer>
+
+  <script src="js/logs.js"></script>
+</body>
+</html>

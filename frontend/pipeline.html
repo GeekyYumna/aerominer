@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AeroMiner — Pipeline</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <span class="nav-brand">✈ AeroMiner</span>
+    <ul class="nav-links">
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="configure.html">Configure</a></li>
+      <li><a href="pipeline.html" class="active">Pipeline</a></li>
+      <li><a href="export.html">Export</a></li>
+      <li><a href="logs.html">Logs</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <h1>Extraction Pipeline</h1>
+    <p class="page-desc">Monitor the ETL pipeline stages in real time.</p>
+
+    <!-- Config summary -->
+    <div class="card" id="config-summary">
+      <h2 class="card-title">Active Configuration</h2>
+      <div class="summary-grid" id="summary-values">
+        <span class="summary-label">Keyword</span>  <span id="s-keyword" class="summary-val">—</span>
+        <span class="summary-label">Min Stars</span> <span id="s-stars" class="summary-val">—</span>
+        <span class="summary-label">Language</span>  <span id="s-lang" class="summary-val">—</span>
+        <span class="summary-label">Max Repos</span> <span id="s-repos" class="summary-val">—</span>
+      </div>
+    </div>
+
+    <!-- Pipeline stages -->
+    <div class="card" style="margin-top: 20px;">
+      <h2 class="card-title">Pipeline Stages</h2>
+
+      <div class="pipeline-stage" id="stage-extract">
+        <div class="stage-left">
+          <div class="stage-icon">⬇</div>
+          <div>
+            <div class="stage-name">Extract</div>
+            <div class="stage-desc">Fetch repositories from GitHub REST API</div>
+          </div>
+        </div>
+        <span class="badge badge--idle" id="badge-extract">Idle</span>
+      </div>
+
+      <div class="stage-connector"></div>
+
+      <div class="pipeline-stage" id="stage-transform">
+        <div class="stage-left">
+          <div class="stage-icon">⚙</div>
+          <div>
+            <div class="stage-name">Transform</div>
+            <div class="stage-desc">Classify repositories by aviation sub-domain</div>
+          </div>
+        </div>
+        <span class="badge badge--idle" id="badge-transform">Idle</span>
+      </div>
+
+      <div class="stage-connector"></div>
+
+      <div class="pipeline-stage" id="stage-load">
+        <div class="stage-left">
+          <div class="stage-icon">💾</div>
+          <div>
+            <div class="stage-name">Load</div>
+            <div class="stage-desc">Persist categorized data to the database</div>
+          </div>
+        </div>
+        <span class="badge badge--idle" id="badge-load">Idle</span>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="progress-wrap" style="margin-top: 28px;">
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+        <span class="progress-label" id="progress-label">0%</span>
+      </div>
+
+      <!-- Controls -->
+      <div class="form-actions" style="margin-top: 20px;">
+        <button id="run-btn">▶ Run Pipeline</button>
+        <button id="reset-btn" class="btn-secondary">↺ Reset</button>
+      </div>
+
+      <!-- Result summary -->
+      <div id="pipeline-result" class="success-banner" style="display:none; margin-top:20px;">
+        ✅ Pipeline complete — <strong id="repo-count"></strong> repositories extracted and categorized.
+        <a href="export.html">Export data →</a>
+      </div>
+
+      <div id="pipeline-error" class="error-banner" style="display:none; margin-top:20px;">
+        ❌ Pipeline failed — network or server error. Check that the backend is running and retry.
+      </div>
+
+    </div>
+
+    <!-- Live log feed -->
+    <div class="card" style="margin-top: 20px;">
+      <h2 class="card-title">Live Log Feed</h2>
+      <div class="log-feed" id="log-feed">
+        <span class="log-placeholder">Pipeline not started yet...</span>
+      </div>
+    </div>
+
+  </main>
+
+<footer class="site-footer">
+  <p>SE-302 — Software Construction &amp; Development</p>
+  <p>AeroMiner — Aviation Repository ETL System</p>
+</footer>
+
+  <script src="js/pipeline.js"></script>
+</body>
+</html>
