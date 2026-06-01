@@ -14,8 +14,13 @@ const errorHandler  = require('./middleware/errorHandler');
 const app = express();
 
 // --- Middleware ---
-app.use(cors({
-  origin: ['http://127.0.0.1:5500', 'http://localhost:5500'],
+ app.use(cors({
+  origin: [
+    'https://www.aerominer.me',
+    'https://aerominer.me',
+    'http://127.0.0.1:5500',
+    'http://localhost:5500',
+  ],
   methods: ['GET', 'POST', 'DELETE'],
 }));
 app.use(express.json());
