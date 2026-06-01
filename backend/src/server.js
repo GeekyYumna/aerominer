@@ -14,15 +14,18 @@ const errorHandler  = require('./middleware/errorHandler');
 const app = express();
 
 // --- Middleware ---
- app.use(cors({
-  origin: [
-    'https://www.aerominer.me',
-    'https://aerominer.me',
-    'http://127.0.0.1:5500',
-    'http://localhost:5500',
-  ],
-  methods: ['GET', 'POST', 'DELETE'],
-}));
+// Allow all origins temporarily to fix CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
+app.use(express.json());
 app.use(express.json());
 
 // --- Routes ---
